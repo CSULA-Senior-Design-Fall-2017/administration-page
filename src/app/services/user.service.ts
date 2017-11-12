@@ -2,10 +2,11 @@ import {Injectable} from '@angular/core';
 import {User} from '../model/user.model';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/distinct';
 
 @Injectable()
 export class UserService {
-
+  counter = 15;
   users: User[] = [{
     id: 11,
     firstName: 'Hongsuk',
@@ -33,7 +34,7 @@ export class UserService {
   }];
 
   getAllUsers(): Observable<User[]> {
-    // console.log(this.users);
+    console.log(this.users);
     return Observable.of(this.users);
   }
 
@@ -41,21 +42,24 @@ export class UserService {
     return Observable.of(this.users.find(user => user.id === id));
   }
 
-  addUser(user: User): void {
-    this.users.push(user);
+  addUser(userIn: User): void {
+    const newUser = userIn;
+    newUser.id = this.counter;
+    // console.log(this.counter);
+    if ((this.users.findIndex(user => user.email === newUser.email)) === -1) {
+      this.users.push(newUser);
+      this.counter++;
+    }
+    console.log(this.users);
   }
 
   editUserById(editUser: User): void {
-    const updateUser = this.users.find(user => user.id === editUser.id);
-    updateUser.id = editUser.id;
-    updateUser.firstName = editUser.firstName;
-    updateUser.lastName = editUser.lastName;
-    updateUser.email = editUser.email;
-    updateUser.password = editUser.password;
+    this.users.push(editUser);
   }
 
   deleteUserById(id: number): void {
-    this.users.find(user => user.id === id);
+    console.log(id);
+    this.users = this.users.filter(user => user.id !== id);
   }
 
 }
