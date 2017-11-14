@@ -1,0 +1,18 @@
+.editPage{
+  margin-top: 50px;
+  width: 50%;
+  margin-left:25%;
+}
+.save {
+  float: right;
+  background-color: #17b935;
+}
+.cancel{
+  background-color: #ffac81;
+}
+.btnGrp{
+  margin-top: 10px;
+}
+hr{
+  border-color: #121bff;
+}
