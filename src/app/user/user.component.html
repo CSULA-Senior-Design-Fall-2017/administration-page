@@ -1,13 +1,15 @@
 <div class="editPage">
 <div class="ui raised segment container">
+  <img src="/assets/images/stem_color.jpg" width="75">
   <h2 class="ui header" align="center">Edit Page</h2>
   <hr>
   <form class="ui form" [formGroup]="myForm" (ngSubmit)="editUser()">
-    <div class="field">
-      <label>First Name</label><input formControlName="firstName" value="{{ currentUser.firstName }}"><br>
-      <label>Last Name</label><input formControlName="lastName" value="{{ currentUser.lastName }}"><br>
-      <label>Email: </label><input formControlName="email" value="{{ currentUser.email }}"><br>
-      <label>Password:</label><input formControlName="password" value="{{currentUser.password}}"><br>
+    <div class="required field">
+      <label>First Name</label><input formControlName="firstName" value="{{ currentUser.firstName }}" placeholder="First Name"><br>
+      <label>Last Name</label><input formControlName="lastName" value="{{ currentUser.lastName }}" placeholder="Last Name"><br>
+      <label>Email: </label><input formControlName="email" value="{{ currentUser.email }}" placeholder="Email"><br>
+      <label>Password:</label><input type="password" formControlName="password" value="{{currentUser.password}}" placeholder="Password"><br>
+      <label>Confirm Password:</label><input type="password" formControlName="password" value="{{currentUser.password}}" placeholder="Confirm Password"><br>
       <div class="btnGrp">
       <button class="ui button cancel">Cancel</button>
       <button type="submit" class="ui button save" >Save</button>
