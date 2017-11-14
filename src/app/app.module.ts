@@ -1,15 +1,16 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {AdminComponent} from './service_test/service_test.component';
-import {UserService} from './services/user.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {UserComponent} from './user/user.component';
+import {UserService} from './user/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminComponent
+    AdminComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
