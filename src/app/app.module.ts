@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AddUserComponent} from './add-user/add-user.component';
 import {AppComponent} from './app.component';
-import {AdminComponent} from './service_test/service_test.component';
+import {DemoComponent} from './service_test/service_test.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './user/user.component';
 import {UserService} from './user/user.service';
@@ -12,7 +12,7 @@ import {UserService} from './user/user.service';
   declarations: [
     AppComponent,
     AddUserComponent,
-    AdminComponent,
+    DemoComponent,
     UserComponent
   ],
   imports: [

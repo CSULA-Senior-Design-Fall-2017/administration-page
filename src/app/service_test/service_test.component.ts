@@ -4,11 +4,11 @@ import {UserService} from '../services/user.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'app-admin',
+  selector: 'app-demo',
   templateUrl: './service_test.component.html',
   styleUrls: ['./service_test.component.css']
 })
-export class AdminComponent implements OnInit {
+export class DemoComponent implements OnInit {
   users: User[];
   form: FormGroup;
   message: string;
