@@ -1,0 +1,18 @@
+<div class="editPage">
+<div class="ui raised segment container">
+  <h2 class="ui header" align="center">Edit Page</h2>
+  <hr>
+  <form class="ui form" [formGroup]="myForm" (ngSubmit)="editUser()">
+    <div class="field">
+      <label>First Name</label><input formControlName="firstName" value="{{ currentUser.firstName }}"><br>
+      <label>Last Name</label><input formControlName="lastName" value="{{ currentUser.lastName }}"><br>
+      <label>Email: </label><input formControlName="email" value="{{ currentUser.email }}"><br>
+      <label>Password:</label><input formControlName="password" value="{{currentUser.password}}"><br>
+      <div class="btnGrp">
+      <button class="ui button cancel">Cancel</button>
+      <button type="submit" class="ui button save" >Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
