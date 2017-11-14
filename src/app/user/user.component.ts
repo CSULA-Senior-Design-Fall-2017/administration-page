@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from './user.service';
-import {User} from './user.model';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-
+import {User} from '../model/user.model';
+import {UserService} from '../services/user.service';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-user',
@@ -10,13 +11,14 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  users: User[];
   myForm: FormGroup;
   currentUser: User;
 
   constructor(private userService: UserService,
-              private formBuilder: FormBuilder) {
-    this.getOneUser();
+              private formBuilder: FormBuilder,
+              private route: ActivatedRoute,
+              private router: Router) {
+    this.getUser();
     this.myForm = this.formBuilder.group({
       email: this.currentUser.email,
       password: this.currentUser.password,
@@ -26,17 +28,19 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe(users => this.users = users);
+    this.getUser();
   }
-  getOneUser() {
-    this.userService.getUserById(14).subscribe(user => this.currentUser = user);
+
+  getUser() {
+    this.route.paramMap.switchMap((params: ParamMap) => this.userService.getUserById(+params.get('id')))
+      .subscribe(user => this.currentUser = user);
   }
 
   editUser(): void {
     const editUser = this.myForm.value;
-    console.log(editUser);
+    editUser.id = this.currentUser.id;
+    // console.log(editUser);
     this.userService.editUserById(editUser);
-    this.userService.getAllUsers().subscribe(users => this.users = users);
-    console.log(this.users);
+    this.router.navigate(['/demo']);
   }
 }

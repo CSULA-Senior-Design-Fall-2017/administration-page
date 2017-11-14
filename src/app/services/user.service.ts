@@ -7,6 +7,7 @@ import 'rxjs/add/operator/distinct';
 @Injectable()
 export class UserService {
   counter = 15;
+  curUser: User;
   users: User[] = [{
     id: 11,
     firstName: 'Hongsuk',
@@ -50,15 +51,21 @@ export class UserService {
       this.users.push(newUser);
       this.counter++;
     }
-    console.log(this.users);
+    // console.log(this.users);
   }
 
   editUserById(editUser: User): void {
-    this.users.push(editUser);
+    // console.log(editUser);
+    this.curUser = this.users.find(user => user.id === editUser.id);
+    this.curUser.firstName = editUser.firstName;
+    this.curUser.lastName = editUser.lastName;
+    this.curUser.password = editUser.password;
+    this.curUser.email = editUser.email;
+    // console.log(this.curUser);
   }
 
   deleteUserById(id: number): void {
-    console.log(id);
+    // console.log(id);
     this.users = this.users.filter(user => user.id !== id);
   }
 

@@ -6,22 +6,28 @@ import {AppComponent} from './app.component';
 import {DemoComponent} from './service_test/service_test.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './user/user.component';
-import {UserService} from './user/user.service';
+import {UserService} from './services/user.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddUserComponent,
     DemoComponent,
-    UserComponent
+    UserComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [UserService],
-  bootstrap: [AppComponent]
+  bootstrap:
+    [AppComponent]
 })
+
 export class AppModule {
 }

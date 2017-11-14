@@ -2,6 +2,10 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from '../model/user.model';
 import {UserService} from '../services/user.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AddUserComponent} from '../add-user/add-user.component';
+import {UserComponent} from '../user/user.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-demo',
@@ -14,7 +18,9 @@ export class DemoComponent implements OnInit {
   message: string;
 
   constructor(private userService: UserService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private modalService: NgbModal,
+              private router: Router) {
     this.createForm();
   }
 
@@ -66,6 +72,18 @@ export class DemoComponent implements OnInit {
     // console.log(id);
     this.userService.deleteUserById(id);
     this.reloadList();
+  }
+
+  onClickCreate(): void {
+    this.modalService.open(AddUserComponent, {size: 'lg'});
+  }
+
+  onClickEdit(): void {
+    this.modalService.open(UserComponent, {size: 'lg'});
+  }
+
+  onEdit(id: number): void {
+    this.router.navigate(['./edit', id]);
   }
 
 }
